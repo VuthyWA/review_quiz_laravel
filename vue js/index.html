@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+</head>
+
+<body >
+    <div class="container p-0 m-auto" id="root">
+        <form class="w-25 m-auto rounded border border-primary p-2" action="#">
+            <div class="form-group">
+                <label>AUTHOR ID</label>
+                <input type="number" class="form-control" placeholder="Author ID" v-model="author_id">
+            </div>
+            <div class="form-group">
+                <label>TITLE</label>
+                <input type="text" class="form-control" placeholder="Title" v-model="title">
+            </div>
+            <div class="form-group">
+                <label>DESCRIPTION</label>
+                <textarea cols="10" rows="3" class="form-control" placeholder="DESCRIPTION" v-model="description"></textarea>
+            </div>
+            <button class="btn btn-primary" @click="createBook">+ Add</button>
+            <button class="btn btn-warning" @click="updateBookInfo">Update</button>
+        </form>
+        <div class="bookContainer d-flex flex-wrap">
+            <div class="card border-primary m-2" v-for="(book, index) in bookList" :key="index" style="width: 30%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                    <small>Author ID: {{book.author_id}}</small>
+                    <p class="card-text">{{book.description}}</p>
+                    <button href="#" class="btn btn-danger" @click="deleteBook(book.id)" >Delete</button>
+                    <button href="#" class="btn btn-primary" @click="getInfoEdit(book.id)">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<script src="script.js"></script>
+
+</html>
